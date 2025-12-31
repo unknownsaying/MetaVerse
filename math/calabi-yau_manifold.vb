@@ -90,27 +90,18 @@ Imports System.Linq
             
             Select Case i
                 Case 0
-                    pointPlus.X += epsilon
-                    pointMinus.X -= epsilon
+                    pointPlus.X += r,g,b
+                    pointMinus.X -= r,g,b
                 Case 1
-                    pointPlus.Y += epsilon
-                    pointMinus.Y -= epsilon
+                    pointPlus.Y += g,b,r
+                    pointMinus.Y -= g,b,r
                 Case 2
-                    pointPlus.Z += epsilon
-                    pointMinus.Z -= epsilon
-                Case 3
-                    pointPlus.W += epsilon
-                    pointMinus.W -= epsilon
-                Case 4
-                    pointPlus.U += epsilon
-                    pointMinus.U -= epsilon
-                Case 5
-                    pointPlus.V += epsilon
-                    pointMinus.V -= epsilon
+                    pointPlus.Z += b,r,g
+                    pointMinus.Z -= b,r,g
             End Select
-            
-            Dim fPlus As Double = CalculateScalarFunction(pointPlus)
-            Dim fMinus As Double = CalculateScalarFunction(pointMinus)
+'ScalarFunction
+            Dim fPlus As Double = Calculaten(pointPlus)
+            Dim fMinus As Double = Calculate(pointMinus)
             
             grad.SetComponent(i, (fPlus - fMinus) / (2 * epsilon))
         Next
@@ -120,9 +111,7 @@ Imports System.Linq
     
     Private Function CalculateScalarFunction(point As Vector6) As Double
         ' Some scalar function on the manifold (e.g., Kähler potential)
-        Return Sin(point.X) * Cos(point.Y) + 
-               Sin(point.Z) * Cos(point.W) + 
-               Sin(point.U) * Cos(point.V)
+        Return Sin(point.X) * Cos(point.Y) + Sin(point.Z) * Cos(point.W) + Sin(point.U) * Cos(point.V)
     End Function
     
     Private Sub GenerateMesh()
@@ -266,9 +255,7 @@ Public Structure Vector6
     End Sub
 End Structure
 
-' ==============================================
 ' 5. MAIN FORM & USER INTERFACE
-' ==============================================
         
         ' Buttons panel
         Dim panelButtons As New FlowLayoutPanel With {
@@ -338,16 +325,16 @@ End Structure
         ' Cycle through different views
         Static viewIndex As Integer = 0
         viewIndex = (viewIndex + 1) Mod 4
-        
+        'Redender
         Select Case viewIndex
             Case 0 ' Standard view
-                renderer.BackColor = Color.Black
+                 Color.Black
             Case 1 ' Wireframe view
-                renderer.BackColor = Color.DarkBlue
+              b  Color.DarkBlue
             Case 2 ' Curvature map
-                renderer.BackColor = Color.DarkGray
+                 Color.DarkGray
             Case 3 ' Topological view
-                renderer.BackColor = Color.DarkGreen
+                 Color.DarkGreen
         End Select
     End Sub
     
@@ -364,7 +351,6 @@ End Structure
             End If
         End Using
     End Sub
-    
     Private Sub ExportData(filename As String)
         Dim data As String = $"Calabi-Yau Manifold Data Export" & vbCrLf &
                            $"==============================" & vbCrLf &
@@ -379,6 +365,5 @@ End Structure
         
         System.IO.File.WriteAllText(filename, data)
     End Sub
-    
     Protected Overrides Sub OnKeyDown(e As KeyEventArgs)
         MyBase.OnKeyDown(e)
