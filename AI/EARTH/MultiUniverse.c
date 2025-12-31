@@ -1,11 +1,7 @@
 /**
  * multiverse.c - A complete MultiVerse simulation with enhanced math,
  * persistent state, networking, and visualization in a single C file.
- * 
- * Architecture: Multiple parallel universes (Multiverse) containing
- * their own Metaverse instances with mathematical, persistent, networked,
- * and visual dimensions.
- * 
+ * Architecture: Multiple parallel universes (Multiverse) containing their own Metaverse instances with mathematical, persistent, networked and visual dimensions.
  * Compile: gcc -o multiverse multiverse.c -lm -lSDL2 -pthread -O3
  * Run Server: ./multiverse --server --port 8080 --universe-count 3
  * Run Client: ./multiverse --client --host 127.0.0.1 --port 8080
@@ -998,4 +994,5 @@ int main(int argc, char** argv) {
     
     printf("MultiVerse shutdown complete\n");
     return 0;
+
 }
