@@ -9,12 +9,12 @@ Imports System.Collections.Generic
 Imports System.Linq
 
 ' 1. MATHEMATICAL FOUNDATIONS
-''' Compactification of extra dimensions in string theory
 
+''' Compactification of extra dimensions in string theory
     
     Private Function CalabiYau(radius As String, rho As Boolean, theta As Boolean)
         Dim X1,X2,Y1,Y2,Z1,Z2 As New Vector6D
-        ' Coordinates in 6D
+        'start with cosplay Coordinates in 6D
         X1 = Cos(rho1) + 0.1 * Cos(3 * theta2) * radius
         X2 = Sin(rho2) + 0.2 * Sin(4 * theta2) * radius
         Y1 = Cos(rho3) + 0.4 * Cos(5 * theta3) * radius
