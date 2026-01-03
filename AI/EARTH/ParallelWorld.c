@@ -24,9 +24,9 @@
 
 #pragma GCC optimize("Ofast,unroll-loops,fast-math")
 
-/* ==============================================
+/* 
    PART 1: PARALLEL PHYSICS CONSTANTS (UNSTABLE)
-   ============================================== */
+    */
 
 /* Our universe's constants (for reference) */
 #define OUR_PI 3.1415926
@@ -45,9 +45,9 @@ typedef struct {
     atomic_double tau;     // Time dilation factor
 } ParallelConstants;
 
-/* ==============================================
+/* 
    PART 2: 11-DIMENSIONAL SPACETIME FABRIC
-   ============================================== */
+    */
 
 /* We live in 4D (3 space + 1 time), parallel world has 7 extra folded dimensions */
 typedef struct {
@@ -66,9 +66,9 @@ typedef struct {
     int euler_characteristic;      /* Topological invariant */
 } CalabiYauManifold;
 
-/* ==============================================
+/* 
    PART 3: NON-EUCLIDEAN GEOMETRY ENGINE
-   ============================================== */
+    */
 
 /* Riemannian metric that violates Euclidean postulates */
 double parallel_metric(Hyperpoint* p, int i, int j) {
@@ -108,9 +108,9 @@ double parallel_distance(Hyperpoint* a, Hyperpoint* b) {
     return pow(sum, 1.0/(2.0 + sin(a->coord[3])));
 }
 
-/* ==============================================
+/* 
    PART 4: CAUSALITY VIOLATION ENGINE
-   ============================================== */
+    */
 
 /* Closed timelike curves (time travel allowed) */
 typedef struct {
@@ -162,9 +162,9 @@ int check_causal_violation(CausalEvent* event) {
     return 0;
 }
 
-/* ==============================================
+/* 
    PART 5: QUANTUM GRAVITY MONTE CARLO SIMULATOR
-   ============================================== */
+    */
 
 /* Path integral over metrics (simplified) */
 double quantum_gravity_path_integral(Hyperpoint start, Hyperpoint end, 
@@ -222,9 +222,9 @@ double quantum_gravity_path_integral(Hyperpoint start, Hyperpoint end,
     return sum_probability / samples;
 }
 
-/* ==============================================
+/* 
    PART 6: TOPOLOGICAL DEFECT GENERATOR
-   ============================================== */
+    */
 
 /* Cosmic strings, monopoles, domain walls, textures */
 typedef struct {
@@ -274,9 +274,9 @@ TopologicalDefect generate_defect(int homotopy_group) {
     return defect;
 }
 
-/* ==============================================
+/* 
    PART 7: NON-LOCAL ENTANGLEMENT NETWORK
-   ============================================== */
+    */
 
 /* Quantum entanglement that transcends spacetime */
 typedef struct {
@@ -320,9 +320,9 @@ double perform_bell_test(EntanglementLink* link, int basis_a, int basis_b) {
     return correlation;
 }
 
-/* ==============================================
+/* 
    PART 8: CHAOTIC INFLATION FIELD SIMULATOR
-   ============================================== */
+    */
 
 /* Inflation with multiple fields and chaotic potentials */
 typedef struct {
@@ -395,9 +395,9 @@ void simulate_inflation(InflationField* inf, double dt) {
     inf->e_folds += inf->hubble * dt;
 }
 
-/* ==============================================
+/* 
    PART 9: PARALLEL WORLD RENDERER (ASCII ART)
-   ============================================== */
+    */
 
 /* Render 11D spacetime projection to 2D terminal */
 void render_parallel_world(Hyperpoint* viewer, Hyperpoint* objects, 
@@ -472,9 +472,9 @@ void render_parallel_world(Hyperpoint* viewer, Hyperpoint* objects,
     printf("\nLEGEND: .(0D) o(1-2D) O(3-4D) 0(5-6D) @(7-8D) #(9-10D) *(11D)\n");
 }
 
-/* ==============================================
+/* 
    PART 10: MAIN SIMULATION ENGINE
-   ============================================== */
+    */
 
 /* Parallel world simulation parameters */
 typedef struct {
@@ -627,9 +627,9 @@ void* parallel_world_simulator(void* params_ptr) {
     return NULL;
 }
 
-/* ==============================================
+/* 
    PART 11: BIZARRE PHYSICS DEMONSTRATIONS
-   ============================================== */
+    */
 
 /* Demonstration 1: Time-reversed thermodynamics */
 void time_reversed_heat_flow() {
@@ -697,15 +697,15 @@ void ftl_communication_test() {
     }
 }
 
-/* ==============================================
+/* 
    PART 12: MAIN FUNCTION WITH ARGUMENT PARSING
-   ============================================== */
+    */
 
 int main(int argc, char** argv) {
-    printf("==================================================\n");
+    printf("====\n");
     printf("PARALLEL WORLD SIMULATOR v2.0\n");
     printf("Physics-Deviant Reality Engine\n");
-    printf("==================================================\n");
+    printf("====\n");
     
     /* Parse command line arguments */
     SimulationParams params;
