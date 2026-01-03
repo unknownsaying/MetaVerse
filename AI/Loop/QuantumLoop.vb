@@ -1,40 +1,40 @@
 Imports System.Drawing.Drawing2D
 Imports System.Numerics
 
-Public Class QuantumPhysicsForm
-    Private WithEvents simulationTimer As New Timer()
-    Private quantumParticles As New List(Of QuantumParticle)
-    Private entangledPairs As New List(Of EntangledPair)
-    Private superpositionParticles As New List(Of SuperpositionState)
-    Private waveFunction As New WaveFunction()
-    Private observer As New QuantumObserver()
-    Private measurementHistory As New List(Of MeasurementEvent)
-    Private rnd As New Random()
-    Private simulationTime As Double = 0
-    Private isCollapsing As Boolean = False
+Class QuantumPhysicsForm
+    Declare WithEvents simulationTimer As New Timer()
+    Declare quantumParticles As New List(Of QuantumParticle)
+    Declare entangledPairs As New List(Of EntangledPair)
+    Declare superpositionParticles As New List(Of SuperpositionState)
+    Declare waveFunction As New WaveFunction()
+    Declare observer As New QuantumObserver()
+    Declare measurementHistory As New List(Of MeasurementEvent)
+    Declare rnd As New Random()
+    Declare simulationTime As Double = 0
+    Declare isCollapsing As Boolean = False
 
     ' Quantum Constants
-    Private Const PLANCK_CONSTANT As Double = 1.0545718E-34
-    Private Const SPEED_OF_LIGHT As Double = 299792458
-    Private Const BOLTZMANN_CONSTANT As Double = 1.380649E-23
+    Declare Const PLANCK_CONSTANT As Double = 1.0545718E-34
+    Declare Const SPEED_OF_LIGHT As Double = 299792458
+    Declare Const BOLTZMANN_CONSTANT As Double = 1.380649E-23
 
-    Public Class QuantumParticle
-        Public Property Position As Vector2
-        Public Property Momentum As Vector2
-        Public Property Spin As Double ' ±1/2
-        Public Property Charge As Double ' ±1
-        Public Property Mass As Double
-        Public Property WaveFunction As Complex ' Ψ(x,t)
-        Public Property ProbabilityAmplitude As Double
-        Public Property QuantumState As Integer ' 0 or 1
-        Public Property IsEntangled As Boolean
-        Public Property EntanglementID As Guid
-        Public Property DecoherenceTime As Double
-        Public Property Color As Color
-        Public Property Size As Single
-        Public Property EnergyLevel As Integer
+    Class QuantumParticle
+        Property Position As Vector2
+        Property Momentum As Vector2
+        Property Spin As Double ' ±1/2
+        Property Charge As Double ' ±1
+        Property Mass As Double
+        Property WaveFunction As Complex ' Ψ(x,t)
+        Property ProbabilityAmplitude As Double
+        Property QuantumState As Integer ' 0 or 1
+        Property IsEntangled As Boolean
+        Property EntanglementID As Guid
+        Property DecoherenceTime As Double
+        Property Color As Color
+        Property Size As Single
+        Property EnergyLevel As Integer
 
-        Public Sub New(pos As Vector2, mom As Vector2, spin As Double, chg As Double)
+        Sub New(pos As Vector2, mom As Vector2, spin As Double, chg As Double)
             Position = pos
             Momentum = mom
             Spin = spin
@@ -49,12 +49,12 @@ Public Class QuantumPhysicsForm
             EnergyLevel = 1
         End Sub
 
-        Public Function CalculateDeBroglieWavelength() As Double
+        Function CalculateDeBroglieWavelength() As Double
             If Momentum.Length() = 0 Then Return Double.MaxValue
             Return (2 * Math.PI * PLANCK_CONSTANT) / (Mass * Momentum.Length())
         End Function
 
-        Public Sub ApplyUncertaintyPrinciple(uncertainty As Double)
+        Sub ApplyUncertaintyPrinciple(uncertainty As Double)
             ' Δx * Δp ≥ ħ/2
             Dim deltaX As Double = rnd.NextDouble() * uncertainty
             Dim deltaP As Double = PLANCK_CONSTANT / (2 * deltaX)
@@ -66,14 +66,14 @@ Public Class QuantumPhysicsForm
         End Sub
     End Class
 
-    Public Class SuperpositionState
-        Public Property BaseParticle As QuantumParticle
-        Public Property PossibleStates As List(Of Vector2)
-        Public Property ProbabilityDistribution As List(Of Double)
-        Public Property PhaseAngles As List(Of Double)
-        Public Property IsCollapsed As Boolean = False
+    Class SuperpositionState
+        Property BaseParticle As QuantumParticle
+        Property PossibleStates As List(Of Vector2)
+        Property ProbabilityDistribution As List(Of Double)
+        Property PhaseAngles As List(Of Double)
+        Property IsCollapsed As Boolean = False
 
-        Public Sub New(particle As QuantumParticle)
+        Sub New(particle As QuantumParticle)
             BaseParticle = particle
             PossibleStates = New List(Of Vector2)
             ProbabilityDistribution = New List(Of Double)
@@ -91,7 +91,7 @@ Public Class QuantumPhysicsForm
             Next
         End Sub
 
-        Public Function CalculateWaveFunction(x As Vector2, t As Double) As Complex
+        Function CalculateWaveFunction(x As Vector2, t As Double) As Complex
             Dim result As Complex = Complex.Zero
             
             For i As Integer = 0 To PossibleStates.Count - 1
@@ -112,20 +112,20 @@ Public Class QuantumPhysicsForm
             Return result
         End Function
 
-        Private Function EnergyAtState(stateIndex As Integer) As Double
+        Declare Function EnergyAtState(stateIndex As Integer) As Double
             ' E = ħω
             Return (stateIndex + 1) * 1.602E-19 ' Simple energy levels in eV
         End Function
     End Class
 
-    Public Class EntangledPair
-        Public Property ParticleA As QuantumParticle
-        Public Property ParticleB As QuantumParticle
-        Public Property CorrelationType As String ' "spin", "position", "momentum"
-        Public Property BellState As Integer ' 0: Φ⁺, 1: Φ⁻, 2: Ψ⁺, 3: Ψ⁻
-        Public Property EntanglementStrength As Double ' 0 to 1
+    Class EntangledPair
+        Property ParticleA As QuantumParticle
+        Property ParticleB As QuantumParticle
+        Property CorrelationType As String ' "spin", "position", "momentum"
+        Property BellState As Integer ' 0: Φ⁺, 1: Φ⁻, 2: Ψ⁺, 3: Ψ⁻
+        Property EntanglementStrength As Double ' 0 to 1
 
-        Public Sub New(p1 As QuantumParticle, p2 As QuantumParticle, corrType As String)
+        Sub New(p1 As QuantumParticle, p2 As QuantumParticle, corrType As String)
             ParticleA = p1
             ParticleB = p2
             CorrelationType = corrType
@@ -148,7 +148,7 @@ Public Class QuantumPhysicsForm
             End If
         End Sub
 
-        Public Sub UpdateCorrelation()
+        Sub UpdateCorrelation()
             ' Maintain entanglement through interaction
             If CorrelationType = "spin" Then
                 If BellState = 0 Or BellState = 1 Then
@@ -168,13 +168,13 @@ Public Class QuantumPhysicsForm
         End Sub
     End Class
 
-    Public Class WaveFunction
-        Public Property PotentialBarrier As List(Of RectangleF)
-        Public Property DoubleSlit As RectangleF
-        Public Property QuantumTunnelingPoints As List(Of PointF)
-        Public Property InterferencePattern As List(Of Double)
+    Class WaveFunction
+        Property PotentialBarrier As List(Of RectangleF)
+        Property DoubleSlit As RectangleF
+        Property QuantumTunnelingPoints As List(Of PointF)
+        Property InterferencePattern As List(Of Double)
 
-        Public Sub New()
+        Sub New()
             PotentialBarrier = New List(Of RectangleF)
             QuantumTunnelingPoints = New List(Of PointF)
             InterferencePattern = New List(Of Double)
@@ -187,7 +187,7 @@ Public Class QuantumPhysicsForm
             PotentialBarrier.Add(New RectangleF(300, 350, 200, 10))
         End Sub
 
-        Public Function CalculatePotentialAt(x As Single, y As Single) As Double
+        Function CalculatePotentialAt(x As Single, y As Single) As Double
             ' Simple harmonic oscillator potential + barriers
             Dim centerX As Single = 400
             Dim centerY As Single = 300
@@ -209,7 +209,7 @@ Public Class QuantumPhysicsForm
             Return harmonic + barrierPotential
         End Function
 
-        Public Function QuantumTunnel(particle As QuantumParticle, barrierHeight As Double) As Boolean
+        Function QuantumTunnel(particle As QuantumParticle, barrierHeight As Double) As Boolean
             ' Simple tunneling probability: P ≈ e^(-2 * κ * d)
             ' where κ = √(2m(V-E))/ħ
             Dim mass As Double = particle.Mass
@@ -225,15 +225,15 @@ Public Class QuantumPhysicsForm
         End Function
     End Class
 
-    Public Class QuantumObserver
-        Public Property Position As PointF
-        Public Property MeasurementBasis As String ' "position", "momentum", "spin"
-        Public Property MeasurementPrecision As Double ' 0 to 1
-        Public Property IsMeasuring As Boolean
-        Public Property DecoherenceRate As Double
-        Public Property MeasurementAngle As Double ' For Stern-Gerlach
+    Class QuantumObserver
+        Property Position As PointF
+        Property MeasurementBasis As String ' "position", "momentum", "spin"
+        Property MeasurementPrecision As Double ' 0 to 1
+        Property IsMeasuring As Boolean
+        Property DecoherenceRate As Double
+        Property MeasurementAngle As Double ' For Stern-Gerlach
 
-        Public Sub New()
+        Sub New()
             Position = New PointF(400, 300)
             MeasurementBasis = "position"
             MeasurementPrecision = 0.8
@@ -241,7 +241,7 @@ Public Class QuantumPhysicsForm
             MeasurementAngle = 0
         End Sub
 
-        Public Sub MeasureParticle(particle As QuantumParticle)
+        Sub MeasureParticle(particle As QuantumParticle)
             ' Wave function collapse
             Dim measurementOutcome As Double
             
@@ -277,7 +277,7 @@ Public Class QuantumPhysicsForm
             particle.DecoherenceTime -= DecoherenceRate
         End Sub
 
-        Public Function CalculateExpectationValue(particles As List(Of QuantumParticle), 
+        Function CalculateExpectationValue(particles As List(Of QuantumParticle), 
                                                  observable As String) As Double
             ' Calculate quantum expectation value
             Dim sum As Double = 0
@@ -299,14 +299,14 @@ Public Class QuantumPhysicsForm
         End Function
     End Class
 
-    Public Class MeasurementEvent
-        Public Property Particle As QuantumParticle
-        Public Property Basis As String
-        Public Property Value As Double
-        Public Property Time As Double
-        Public Property CollapsedState As Integer
+    Class MeasurementEvent
+        Property Particle As QuantumParticle
+        Property Basis As String
+        Property Value As Double
+        Property Time As Double
+        Property CollapsedState As Integer
 
-        Public Sub New(p As QuantumParticle, b As String, v As Double, t As Double)
+        Sub New(p As QuantumParticle, b As String, v As Double, t As Double)
             Particle = p
             Basis = b
             Value = v
@@ -315,7 +315,7 @@ Public Class QuantumPhysicsForm
         End Sub
     End Class
 
-    Private Sub QuantumPhysicsForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Declare Sub QuantumPhysicsForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DoubleBuffered = True
         InitializeQuantumSystem()
         
@@ -323,7 +323,7 @@ Public Class QuantumPhysicsForm
         simulationTimer.Start()
     End Sub
 
-    Private Sub InitializeQuantumSystem()
+    Declare Sub InitializeQuantumSystem()
         quantumParticles.Clear()
         entangledPairs.Clear()
         superpositionParticles.Clear()
@@ -362,7 +362,7 @@ Public Class QuantumPhysicsForm
         observer.Position = New PointF(400, 300)
     End Sub
 
-    Private Sub UpdateQuantumSystem()
+    Declare Sub UpdateQuantumSystem()
         simulationTime += 0.016
 
         ' Update particle wave functions
@@ -485,7 +485,7 @@ Public Class QuantumPhysicsForm
         UpdateInterferencePattern()
     End Sub
 
-    Private Sub UpdateInterferencePattern()
+    Declare Sub UpdateInterferencePattern()
         ' Simulate interference pattern on detector screen
         Dim detectorX As Integer = 700
         Dim intensities(200) As Double
@@ -513,7 +513,7 @@ Public Class QuantumPhysicsForm
         waveFunction.InterferencePattern = intensities.ToList()
     End Sub
 
-    Private Sub QuantumPhysicsForm_Paint(sender As Object, e As PaintEventArgs) Handles MyBase.Paint
+    Declare Sub QuantumPhysicsForm_Paint(sender As Object, e As PaintEventArgs) Handles MyBase.Paint
         e.Graphics.SmoothingMode = SmoothingMode.AntiAlias
         e.Graphics.Clear(Color.Black)
 
@@ -632,7 +632,7 @@ Public Class QuantumPhysicsForm
         Next
     End Sub
 
-    Private Sub DrawQuantumInformation(g As Graphics)
+    Declare Sub DrawQuantumInformation(g As Graphics)
         ' Draw quantum theory information
         Using font As New Font("Consolas", 9)
             Dim yPos As Integer = 10
@@ -682,7 +682,7 @@ Public Class QuantumPhysicsForm
         End Using
     End Sub
 
-    Private Sub DrawObserver(g As Graphics)
+    Declare Sub DrawObserver(g As Graphics)
         ' Draw observer with measurement cone
         Using observerBrush As New SolidBrush(Color.FromArgb(200, 255, 255, 255))
             g.FillEllipse(observerBrush,
@@ -707,7 +707,7 @@ Public Class QuantumPhysicsForm
         End If
     End Sub
 
-    Private Sub DrawInterferencePattern(g As Graphics)
+    Declare Sub DrawInterferencePattern(g As Graphics)
         ' Draw detector screen
         Dim screenX As Integer = 700
         g.DrawLine(Pens.Gray, screenX, 0, screenX, 600)
@@ -732,7 +732,7 @@ Public Class QuantumPhysicsForm
         g.DrawString("INTERFERENCE PATTERN", New Font("Arial", 8), Brushes.White, screenX + 5, 10)
     End Sub
 
-    Private Sub DrawMeasurements(g As Graphics)
+    Declare Sub DrawMeasurements(g As Graphics)
         ' Draw recent measurement events
         Dim recentMeasurements = measurementHistory.
             OrderByDescending(Function(m) m.Time).
@@ -747,20 +747,20 @@ Public Class QuantumPhysicsForm
         End Using
     End Sub
 
-    Private Sub simulationTimer_Tick(sender As Object, e As EventArgs) Handles simulationTimer.Tick
+    Declare Sub simulationTimer_Tick(sender As Object, e As EventArgs) Handles simulationTimer.Tick
         UpdateQuantumSystem()
         Invalidate()
     End Sub
 
     ' Control buttons
-    Private Sub btnCollapse_Click(sender As Object, e As EventArgs) Handles btnCollapse.Click
+    Declare Sub btnCollapse_Click(sender As Object, e As EventArgs) Handles btnCollapse.Click
         isCollapsing = True
         For Each sup In superpositionParticles
             sup.IsCollapsed = False
         Next
     End Sub
 
-    Private Sub btnEntangle_Click(sender As Object, e As EventArgs) Handles btnEntangle.Click
+    Declare Sub btnEntangle_Click(sender As Object, e As EventArgs) Handles btnEntangle.Click
         ' Create new entangled pairs
         If quantumParticles.Count >= 2 Then
             For i As Integer = 0 To Math.Min(3, quantumParticles.Count \ 2) - 1
@@ -771,12 +771,12 @@ Public Class QuantumPhysicsForm
         End If
     End Sub
 
-    Private Sub btnMeasure_Click(sender As Object, e As EventArgs) Handles btnMeasure.Click
+    Declare Sub btnMeasure_Click(sender As Object, e As EventArgs) Handles btnMeasure.Click
         observer.IsMeasuring = Not observer.IsMeasuring
         btnMeasure.Text = If(observer.IsMeasuring, "Stop Measuring", "Start Measuring")
     End Sub
 
-    Private Sub btnChangeBasis_Click(sender As Object, e As EventArgs) Handles btnChangeBasis.Click
+    Declare Sub btnChangeBasis_Click(sender As Object, e As EventArgs) Handles btnChangeBasis.Click
         Dim bases As String() = {"position", "momentum", "spin"}
         Dim currentIndex As Integer = Array.IndexOf(bases, observer.MeasurementBasis)
         observer.MeasurementBasis = bases((currentIndex + 1) Mod bases.Length)
@@ -786,12 +786,12 @@ Public Class QuantumPhysicsForm
         End If
     End Sub
 
-    Private Sub btnReset_Click(sender As Object, e As EventArgs) Handles btnReset.Click
+    Declare Sub btnReset_Click(sender As Object, e As EventArgs) Handles btnReset.Click
         InitializeQuantumSystem()
         simulationTime = 0
     End Sub
 
-    Private Sub QuantumPhysicsForm_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+    Declare Sub QuantumPhysicsForm_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         Select Case e.KeyCode
             Case Keys.Space
                 ' Toggle measurement
@@ -816,4 +816,5 @@ Public Class QuantumPhysicsForm
                 observer.MeasurementPrecision = Math.Max(observer.MeasurementPrecision - 0.1, 0.1)
         End Select
     End Sub
+
 End Class
