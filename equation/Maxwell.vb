@@ -1,5 +1,5 @@
+
 ' MAXWELL'S EQUATIONS SUMMARY
-' ===========================
 ' Differential Form (Microscopic)
 Sub DifferentialForm()
     ' 1. Gauss's Law for Electricity: ∇·D = ρ_free
@@ -44,23 +44,9 @@ Sub Potentials()
     ' Wave equations for A and V
 End Sub
 
-' Special Cases
-Sub SpecialCases()
+Sub div() curl()
     ' Electrostatics: ∇·D = ρ, ∇×E = 0
     ' Magnetostatics: ∇·B = 0, ∇×H = J
     ' Quasistatics: Time-varying, no radiation
     ' Vacuum: ρ=0, J=0 → EM waves at speed c
-End Sub
-' Main Summary
-Sub Main()
-    Console.WriteLine("MAXWELL'S EQUATIONS SUMMARY")
-    Console.WriteLine("1. Electric charges create diverging E-fields (Gauss)")
-    Console.WriteLine("2. No magnetic monopoles exist")
-    Console.WriteLine("3. Changing B-fields induce circulating E-fields (Faraday)")
-    Console.WriteLine("4. Currents & changing E-fields create circulating B-fields")
-    Console.WriteLine("Key Unifications:")
-    Console.WriteLine("- Unified electricity, magnetism, and optics")
-    Console.WriteLine("- Predicted EM waves at speed of light")
-    Console.WriteLine("- Showed light is electromagnetic wave")
-    Console.WriteLine("- Basis for all classical electromagnetism")
 End Sub
