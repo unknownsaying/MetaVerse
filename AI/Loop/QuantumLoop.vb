@@ -816,5 +816,4 @@ Class QuantumPhysicsForm
                 observer.MeasurementPrecision = Math.Max(observer.MeasurementPrecision - 0.1, 0.1)
         End Select
     End Sub
-
 End Class
