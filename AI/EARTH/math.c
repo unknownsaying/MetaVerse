@@ -17,9 +17,9 @@
 #include <time.h>
 #include <stdint.h>
 
-/* ==============================================
+/* 
    1. FUNDAMENTAL MATHEMATICAL CONSTANTS
-   ============================================== */
+    */
 
 typedef struct {
     /* Universal Constants */
@@ -41,9 +41,9 @@ typedef struct {
     double aleph_null;       /* ℵ₀: Cardinality of natural numbers */
 } MathConstants;
 
-/* ==============================================
+/* 
    2. NUMBER THEORY & ABSTRACT ALGEBRA
-   ============================================== */
+    */
 
 /* Prime number generation (Sieve of Eratosthenes) */
 void generate_primes(int limit, int** primes, int* count) {
@@ -117,9 +117,9 @@ double complex_magnitude(Complex c) {
     return sqrt(c.real*c.real + c.imag*c.imag);
 }
 
-/* ==============================================
+/* 
    3. GEOMETRIC ALGEBRA (Clifford Algebra)
-   ============================================== */
+    */
 
 /* 3D Vector with geometric algebra operations */
 typedef struct {
@@ -188,9 +188,9 @@ Multivector rotate_vector(Multivector rotor, Multivector vector) {
     return geometric_product(temp, R_conj);
 }
 
-/* ==============================================
+/* 
    4. DIFFERENTIAL GEOMETRY & TENSORS
-   ============================================== */
+    */
 
 /* Riemannian metric tensor (4D spacetime) */
 typedef struct {
@@ -243,9 +243,9 @@ void calculate_riemann(MetricTensor* metric, double R[4][4][4][4]) {
     }
 }
 
-/* ==============================================
+/* 
    5. TOPOLOGY & MANIFOLDS
-   ============================================== */
+    */
 
 /* Simplicial complex (for computational topology) */
 typedef struct {
@@ -282,9 +282,9 @@ void compute_homology(Simplex** complex, int num_simplices,
     }
 }
 
-/* ==============================================
+/* 
    6. LIE GROUPS & ALGEBRAS
-   ============================================== */
+    */
 
 /* SO(3) rotation group (3x3 orthogonal matrices with det = 1) */
 typedef struct {
@@ -346,9 +346,9 @@ SO3Matrix so3_exp(so3Algebra w) {
     return result;
 }
 
-/* ==============================================
+/* 
    7. DIFFERENTIAL EQUATIONS & DYNAMICAL SYSTEMS
-   ============================================== */
+    */
 
 /* Runge-Kutta 4th order integrator */
 typedef double (*ODEFunction)(double t, double y, void* params);
@@ -417,9 +417,9 @@ void symplectic_integrate(HamiltonianFunc H, PhasePoint* point, double dt) {
     point->t += dt;
 }
 
-/* ==============================================
+/* 
    8. FRACTAL GEOMETRY & COMPLEX DYNAMICS
-   ============================================== */
+    */
 
 /* Mandelbrot set iteration */
 int mandelbrot_iteration(double complex c, int max_iter) {
@@ -491,9 +491,9 @@ double fractal_dimension(double* data, int width, int height,
     return D;
 }
 
-/* ==============================================
+/* 
    9. INFORMATION THEORY & ENTROPY
-   ============================================== */
+    */
 
 /* Shannon entropy H(X) = -Σ p(x) log₂ p(x) */
 double shannon_entropy(double* probabilities, int n) {
@@ -554,9 +554,9 @@ double kolmogorov_complexity_estimate(const char* data, int length) {
     return (double)compressed_length / length;
 }
 
-/* ==============================================
+/* 
    10. CATEGORY THEORY (FUNCTORS & NATURAL TRANSFORMATIONS)
-   ============================================== */
+    */
 
 /* Object in a category (simplified) */
 typedef struct {
@@ -606,9 +606,9 @@ Morphism* compose_morphisms(Morphism* f, Morphism* g) {
     return comp;
 }
 
-/* ==============================================
+/* 
    11. QUANTUM MATHEMATICS
-   ============================================== */
+    */
 
 /* Quantum state (wavefunction) */
 typedef struct {
@@ -659,9 +659,9 @@ void quantum_fourier_transform(QuantumState* state) {
     state->amplitudes = new_amplitudes;
 }
 
-/* ==============================================
+/* 
    12. MATHEMATICAL PHYSICS EQUATIONS
-   ============================================== */
+    */
 
 /* Einstein field equations: G_μν = 8πG/c⁴ T_μν */
 void einstein_field_equations(MetricTensor* g, double T[4][4], 
@@ -708,9 +708,9 @@ void schrodinger_equation(QuantumState* psi, double t,
     psi->amplitudes = new_amplitudes;
 }
 
-/* ==============================================
+/* 
    13. STATISTICS & PROBABILITY THEORY
-   ============================================== */
+    */
 
 /* Probability distributions */
 typedef enum {
@@ -767,9 +767,9 @@ double* mcmc_sample(double (*target_dist)(double), int num_samples,
     return samples;
 }
 
-/* ==============================================
+/* 
    14. GRAPH THEORY
-   ============================================== */
+    */
 
 typedef struct GraphNode {
     int id;
@@ -875,9 +875,9 @@ int graphs_isomorphic(Graph* g1, Graph* g2) {
     return 1;  /* Assume isomorphic for demo */
 }
 
-/* ==============================================
+/* 
    15. COMPUTATIONAL GEOMETRY
-   ============================================== */
+    */
 
 /* Point in 2D */
 typedef struct {
@@ -963,9 +963,9 @@ Polygon* convex_hull(Point2D* points, int n) {
     return result;
 }
 
-/* ==============================================
+/* 
    MAIN DEMONSTRATION FUNCTION
-   ============================================== */
+    */
 
 void demonstrate_all_mathematics() {
     printf("=== MATHEMATICAL UNIVERSE DEMONSTRATION ===\n\n");
@@ -1072,4 +1072,5 @@ int main(int argc, char** argv) {
     }
     
     return 0;
+
 }
