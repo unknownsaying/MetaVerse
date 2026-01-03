@@ -1,32 +1,32 @@
 Imports System.Drawing.Drawing2D
 Imports System.Math
 
-Public Class MainForm
-    Private simulationType As String = "Loop"
-    Private simulationRunning As Boolean = False
-    Private simulationTime As Double = 0
-    Private particles As List(Of Particle) = New List(Of Particle)()
-    Private rnd As Random = New Random()
+Class MainForm
+    simulationType As String = "Loop"
+    simulationRunning As Boolean = False
+    simulationTime As Double = 0
+    particles As List(Of Particle) = New List(Of Particle)()
+    rnd As Random = New Random()
 
     ' Physics parameters
-    Private gravity As Single = 0.1
-    Private friction As Single = 0.99
-    Private quantumProbability As Double = 0.05
-    Private entanglementDistance As Integer = 100
-    Private decayRate As Single = 0.001
+    gravity As Single = 0.1
+    friction As Single = 0.99
+    quantumProbability As Double = 0.05
+    entanglementDistance As Integer = 100
+    decayRate As Single = 0.001
 
-    Public Class Particle
-        Public Property Position As PointF
-        Public Property Velocity As PointF
-        Public Property Color As Color
-        Public Property Size As Single
-        Public Property Life As Single = 1.0
-        Public Property QuantumState As Integer = 0
-        Public Property EntangledWith As List(Of Particle) = New List(Of Particle)()
-        Public Property IsObserver As Boolean = False
-        Public Property DecayCounter As Single = 0
+    Class Particle
+        Property Position As PointF
+        Property Velocity As PointF
+        Property Color As Color
+        Property Size As Single
+        Property Life As Single = 1.0
+        Property QuantumState As Integer = 0
+        Property EntangledWith As List(Of Particle) = New List(Of Particle)()
+        Property IsObserver As Boolean = False
+        Property DecayCounter As Single = 0
 
-        Public Sub New(pos As PointF, vel As PointF, clr As Color, sz As Single)
+        Sub New(pos As PointF, vel As PointF, clr As Color, sz As Single)
             Position = pos
             Velocity = vel
             Color = clr
@@ -34,14 +34,14 @@ Public Class MainForm
         End Sub
     End Class
 
-    Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DoubleBuffered = True
         InitializeParticles()
         Timer1.Interval = 16 ' ~60 FPS
         Timer1.Start()
     End Sub
 
-    Private Sub InitializeParticles()
+    Sub InitializeParticles()
         particles.Clear()
         Dim centerX As Integer = pbCanvas.Width \ 2
         Dim centerY As Integer = pbCanvas.Height \ 2
@@ -115,13 +115,13 @@ Public Class MainForm
         particles.Add(observer)
     End Sub
 
-    Private Function Distance(p1 As PointF, p2 As PointF) As Single
+    Function Distance(p1 As PointF, p2 As PointF) As Single
         Dim dx As Single = p1.X - p2.X
         Dim dy As Single = p1.Y - p2.Y
         Return CSng(Math.Sqrt(dx * dx + dy * dy))
     End Function
 
-    Private Sub UpdatePhysics()
+    Sub UpdatePhysics()
         simulationTime += 0.016
 
         Select Case simulationType
@@ -134,7 +134,7 @@ Public Class MainForm
         End Select
     End Sub
 
-    Private Sub UpdateLoopPhysics()
+    Sub UpdateLoopPhysics()
         For Each p In particles
             If Not p.IsObserver Then
                 ' Apply centripetal force
@@ -163,7 +163,7 @@ Public Class MainForm
         Next
     End Sub
 
-    Private Sub UpdateQuantumPhysics()
+    Sub UpdateQuantumPhysics()
         ' Quantum superposition and entanglement effects
         For Each p In particles
             If Not p.IsObserver Then
@@ -201,7 +201,7 @@ Public Class MainForm
         Next
     End Sub
 
-    Private Sub UpdateDeathLoopPhysics()
+    Sub UpdateDeathLoopPhysics()
         For Each p In particles
             If Not p.IsObserver Then
                 ' Decay process
@@ -261,7 +261,7 @@ Public Class MainForm
         particles.RemoveAll(Function(x) x.Size <= 0)
     End Sub
 
-    Private Sub pbCanvas_Paint(sender As Object, e As PaintEventArgs) Handles pbCanvas.Paint
+    Sub pbCanvas_Paint(sender As Object, e As PaintEventArgs) Handles pbCanvas.Paint
         e.Graphics.SmoothingMode = SmoothingMode.AntiAlias
         e.Graphics.Clear(Color.Black)
 
@@ -343,42 +343,43 @@ Public Class MainForm
         e.Graphics.DrawEllipse(Pens.Gray, centerX - 3, centerY - 3, 6, 6)
     End Sub
 
-    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+    Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         If simulationRunning Then
             UpdatePhysics()
             pbCanvas.Invalidate()
         End If
     End Sub
 
-    Private Sub btnLoop_Click(sender As Object, e As EventArgs) Handles btnLoop.Click
+    Sub btnLoop_Click(sender As Object, e As EventArgs) Handles btnLoop.Click
         simulationType = "Loop"
         simulationTime = 0
         InitializeParticles()
         pbCanvas.Invalidate()
     End Sub
 
-    Private Sub btnQuantumLoop_Click(sender As Object, e As EventArgs) Handles btnQuantumLoop.Click
+    Sub btnQuantumLoop_Click(sender As Object, e As EventArgs) Handles btnQuantumLoop.Click
         simulationType = "QuantumLoop"
         simulationTime = 0
         InitializeParticles()
         pbCanvas.Invalidate()
     End Sub
 
-    Private Sub btnDeathLoop_Click(sender As Object, e As EventArgs) Handles btnDeathLoop.Click
+    Sub btnDeathLoop_Click(sender As Object, e As EventArgs) Handles btnDeathLoop.Click
         simulationType = "DeathLoop"
         simulationTime = 0
         InitializeParticles()
         pbCanvas.Invalidate()
     End Sub
 
-    Private Sub btnStartStop_Click(sender As Object, e As EventArgs) Handles btnStartStop.Click
+    Sub btnStartStop_Click(sender As Object, e As EventArgs) Handles btnStartStop.Click
         simulationRunning = Not simulationRunning
         btnStartStop.Text = If(simulationRunning, "Pause", "Start")
     End Sub
 
-    Private Sub btnReset_Click(sender As Object, e As EventArgs) Handles btnReset.Click
+    Sub btnReset_Click(sender As Object, e As EventArgs) Handles btnReset.Click
         simulationTime = 0
         InitializeParticles()
         pbCanvas.Invalidate()
     End Sub
+
 End Class
