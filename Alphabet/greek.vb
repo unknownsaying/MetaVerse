@@ -1,6 +1,4 @@
-
 Greek Alphabet Enumeration
-=========================
 
  1. Alpha      Α α
  2. Beta       Β β
@@ -28,8 +26,7 @@ Greek Alphabet Enumeration
 24. Omega      Ω ω
 
 Mathematical Constants Using Greek Letters
-==========================================
-π (Pi) ≈ 3.14159265358979
+π (Pi) ≈ 3.1415926
 Σ (Summation): Sum of 1 to 10 = 55
 Δ (Difference): 15 - 7 = 8
-φ (Golden Ratio) ≈ 1.61803398874989
+φ (Golden Ratio) ≈ 1.618033
