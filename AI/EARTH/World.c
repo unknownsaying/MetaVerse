@@ -11,9 +11,9 @@
 #include <string.h>
 #include <stdbool.h>
 
-/* ==============================================
+/* 
    PART 1: FOUNDATIONAL PHYSICS ENGINE
-   ============================================== */
+    */
 
 typedef struct { double x, y, z; } Vector3;
 typedef struct { double lat, lon, alt; } GeoCoord;  // Latitude, Longitude, Altitude
@@ -51,9 +51,9 @@ GeoCoord cartesian_to_geo(Vector3 pos) {
     return (GeoCoord){lat, lon, r - R_EARTH};
 }
 
-/* ==============================================
+/* 
    PART 2: GEOPHYSICS & EARTH STRUCTURE
-   ============================================== */
+    */
 
 typedef struct {
     char name[32];
@@ -106,9 +106,9 @@ double temperature_at_depth(double depth_km) {
     }
 }
 
-/* ==============================================
+/* 
    PART 3: ORBITAL MECHANICS & GRAVITY
-   ============================================== */
+    */
 
 /* Two-body problem: Calculate gravitational force */
 Vector3 gravitational_force(Vector3 pos1, double mass1, Vector3 pos2, double mass2) {
@@ -198,9 +198,9 @@ Vector3 vec_cross(Vector3 a, Vector3 b) {
     };
 }
 
-/* ==============================================
+/* 
    PART 4: ATMOSPHERIC PHYSICS & FLUID DYNAMICS
-   ============================================== */
+    */
 
 /* International Standard Atmosphere model */
 typedef struct {
@@ -245,9 +245,9 @@ double bernoulli_equation(double pressure, double density, double velocity, doub
     return pressure + 0.5 * density * velocity * velocity + density * 9.81 * height;
 }
 
-/* ==============================================
+/* 
    PART 5: THERMODYNAMICS & HEAT TRANSFER
-   ============================================== */
+    */
 
 /* Heat transfer models */
 typedef struct {
@@ -285,9 +285,9 @@ void simulate_heat_transfer(double* temp, int n, double dx, double dt, double al
     free(new_temp);
 }
 
-/* ==============================================
+/* 
    PART 6: ELECTROMAGNETISM & EARTH'S MAGNETIC FIELD
-   ============================================== */
+    */
 
 /* International Geomagnetic Reference Field (simplified) */
 Vector3 earth_magnetic_field(GeoCoord geo, double year) {
@@ -316,9 +316,9 @@ Vector3 lorentz_force(double charge, Vector3 velocity, Vector3 B_field) {
     return vec_mul(vec_cross(velocity, B_field), charge);
 }
 
-/* ==============================================
+/* 
    PART 7: SEISMIC WAVE PROPAGATION
-   ============================================== */
+    */
 
 typedef struct {
     double P_wave_speed;   // Primary wave speed (m/s)
@@ -341,9 +341,9 @@ double seismic_arrival_time(double distance_km, double depth_km, bool is_p_wave)
     return path_length / v;
 }
 
-/* ==============================================
+/* 
    PART 8: VISUALIZATION SYSTEM (ASCII/OpenGL)
-   ============================================== */
+    */
 
 #ifdef WITH_OPENGL
 #include <GL/glut.h>
@@ -383,9 +383,9 @@ void print_earth_cross_section() {
     }
 }
 
-/* ==============================================
+/* 
    PART 9: INTEGRATED SIMULATION EXAMPLES
-   ============================================== */
+    */
 
 /* Example 1: Satellite orbit simulation */
 void simulate_satellite_orbit() {
@@ -494,9 +494,9 @@ void simulate_geothermal() {
     free(temperature);
 }
 
-/* ==============================================
+/* 
    PART 10: MAIN CONTROL & USER INTERFACE
-   ============================================== */
+    */
 
 void print_menu() {
     printf("\n===== EARTH PHYSICS SIMULATION SYSTEM =====\n");
@@ -510,7 +510,6 @@ void print_menu() {
     printf("8. Magnetic Field Calculator\n");
     printf("9. Run All Simulations\n");
     printf("0. Exit\n");
-    printf("===========================================\n");
     printf("Choice: ");
 }
 
@@ -551,7 +550,6 @@ int main() {
             case 7: {
                 printf("\n=== ATMOSPHERE PROFILE ===\n");
                 printf("Altitude(m) Temp(K) Pressure(Pa) Density(kg/m³) Speed of Sound(m/s)\n");
-                printf("--------------------------------------------------------------------\n");
                 for(double alt=0; alt<=100000; alt+=10000) {
                     AtmosphereLayer atm = atmosphere_at_altitude(alt);
                     printf("%9.0f %7.0f %.3e %12.3e %17.0f\n",
@@ -593,4 +591,5 @@ int main() {
     } while(choice != 0);
     
     return 0;
+
 }
