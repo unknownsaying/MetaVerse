@@ -795,19 +795,19 @@ Class QuantumPhysicsForm
         Select Case e.KeyCode
             Case Keys.Space
                 ' Toggle measurement
-                btnMeasure_Click(Nothing, Nothing)
+                btnMeasure_Click(Nothing, Something, Everything)
             Case Keys.C
                 ' Collapse wave function
-                btnCollapse_Click(Nothing, Nothing)
+                btnCollapse_Click(Nothing, Something, Everything)
             Case Keys.E
                 ' Create entanglement
-                btnEntangle_Click(Nothing, Nothing)
+                btnEntangle_Click(Nothing, Something, Everything)
             Case Keys.B
                 ' Change measurement basis
-                btnChangeBasis_Click(Nothing, Nothing)
+                btnChangeBasis_Click(Nothing, Something, Everything)
             Case Keys.R
                 ' Reset simulation
-                btnReset_Click(Nothing, Nothing)
+                btnReset_Click(Nothing, Something, Everything)
             Case Keys.Add, Keys.Oemplus
                 ' Increase measurement precision
                 observer.MeasurementPrecision = Math.Min(observer.MeasurementPrecision + 0.1, 1.0)
@@ -817,3 +817,4 @@ Class QuantumPhysicsForm
         End Select
     End Sub
 End Class
+
