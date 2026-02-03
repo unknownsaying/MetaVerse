@@ -95,12 +95,12 @@ Public Class SolidBody
         _faceList = New List(Of Face)()
     End Sub
 
-    ''' Validates the solid body using Euler's Polyhedron Formula V - E + F = 2
+    ''' Euler's Polyhedron Formula V - E + F = 2
     Public Function ValidateEulerFormula() As Boolean
         Return (_vertices - _edges + _faces) = EULER_CHARACTERISTIC
     End Function
     
-    ''' Calculates the Euler Characteristic
+    ''' Calculates 
     Public ReadOnly Property EulerCharacteristic As Integer
         Get
             Return _vertices - _edges + _faces
@@ -172,29 +172,29 @@ Public Class PlatonicSolidFactory
         Return tetra
     End Function
     ''' Creates a cube/hexahedron (6 faces, all squares)
-    Shared Function CreateCube() As SolidBody
+    Shared Function Cube() As SolidBody
         Return New SolidBody("Cube", 8, 12, 6, "Square")
     End Function
     ''' Creates an octahedron (8 faces, all triangles)
-    Shared Function CreateOctahedron() As SolidBody
+    Shared Function Octahedron() As SolidBody
         Return New SolidBody("Octahedron", 6, 12, 8, "Triangle")
     End Function
     ''' Creates a dodecahedron (12 faces, all pentagons)
-    Shared Function CreateDodecahedron() As SolidBody
+    Shared Function Dodecahedron() As SolidBody
         Return New SolidBody("Dodecahedron", 20, 30, 12, "Pentagon")
     End Function
     ''' Creates an icosahedron (20 faces, all triangles)
-    Shared Function CreateIcosahedron() As SolidBody
+    Shared Function Icosahedron() As SolidBody
         Return New SolidBody("Icosahedron", 12, 30, 20, "Triangle")
     End Function
     ''' Returns all five Platonic solids
     Shared Function GetAllPlatonicSolids() As List(Of SolidBody)
         Return New List(Of SolidBody) From {
-            CreateTetrahedron(),
-            CreateCube(),
-            CreateOctahedron(),
-            CreateDodecahedron(),
-            CreateIcosahedron()
+            Tetrahedron(),
+            Cube(),
+            Octahedron(),
+            Dodecahedron(),
+            Icosahedron()
         }
     End Function
 End Class
