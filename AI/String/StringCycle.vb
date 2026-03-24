@@ -47,8 +47,8 @@ Module StringPhysics
                                  frequency As Double, 
                                  length As Double, 
                                  mode As Integer) As Double
-        Dim k As Double = mode * Math.PI / length
-        Dim omega As Double = 2 * Math.PI * frequency
+        Dim k As Single = mode * Math.PI / length
+        Dim omega As Single = 2 * Math.PI * frequency
         Return Math.Sin(k * x) * Math.Cos(omega * t)
     End Function
 End Module
