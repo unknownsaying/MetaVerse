@@ -4,7 +4,7 @@ Imports System.Drawing.Drawing2D
 Imports System.Numerics
 Imports System.Windows.Forms
 
-Public Class DeathLoopGame
+Class DeathLoopGame
     Inherits Form
     
     Private WithEvents gameTimer As New Timer()
@@ -55,7 +55,7 @@ Public Class DeathLoopGame
     ' PHYSICS SYSTEM
     ' ============================================
     
-    Public Class PhysicsWorld
+    Class PhysicsWorld
         Public Property Gravity As Vector2 = New Vector2(0, 98.1F) ' 10x Earth gravity for game feel
         Public Property AirDensity As Single = 1.225F ' kg/m³
         Public Property FrictionCoefficient As Single = 0.3F
@@ -202,7 +202,7 @@ Public Class DeathLoopGame
     ' PLAYER WITH TIME LOOP ABILITIES
     ' ============================================
     
-    Public Class DeathLoopPlayer
+    Class DeathLoopPlayer
         Inherits PhysicsObject
         
         Public Property Health As Single = 100.0F
@@ -474,7 +474,7 @@ Public Class DeathLoopGame
     ' VISIONARY (TARGET) AI
     ' ============================================
     
-    Public Class Visionary
+    Class Visionary
         Inherits PhysicsObject
         
         Public Property Name As String
@@ -723,7 +723,7 @@ Public Class DeathLoopGame
     ' TIME LOOP MECHANICS
     ' ============================================
     
-    Public Class LoopEventManager
+    Class LoopEventManager
         Private scheduledEvents As New Dictionary(Of Double, List(Of LoopEvent))()
         Private triggeredEvents As New List(Of LoopEvent)()
         
@@ -759,7 +759,7 @@ Public Class DeathLoopGame
         End Sub
     End Class
     
-    Public Class LoopMemory
+    Class LoopMemory
         Public Property RememberedLocations As New Dictionary(Of String, LocationMemory)()
         Public Property DiscoveredClues As New List(Of Clue)()
         Public Property LearnedPatterns As New List(Of Pattern)()
@@ -795,7 +795,7 @@ Public Class DeathLoopGame
     ' ADVANCED PHYSICS EFFECTS
     ' ============================================
     
-    Public Class TimeAnomaly
+    Class TimeAnomaly
         Inherits PhysicsObject
         
         Public Property Type As TimeAnomalyType
@@ -844,7 +844,7 @@ Public Class DeathLoopGame
         End Sub
     End Class
     
-    Public Class GravityWell
+    Class GravityWell
         Inherits PhysicsObject
         
         Public Property GravityStrength As Single = 500.0F
@@ -895,7 +895,7 @@ Public Class DeathLoopGame
         End Sub
     End Class
     
-    Public Class DestructibleObject
+    Class DestructibleObject
         Inherits PhysicsObject
         
         Public Property Health As Single = 100.0F
@@ -994,7 +994,7 @@ Public Class DeathLoopGame
         End Sub
     End Class
     
-    Public Class RagdollPhysics
+    Class RagdollPhysics
         Inherits PhysicsObject
         
         Public Property Bones As New List(Of RagdollBone)()
@@ -1595,7 +1595,7 @@ End Class
 ' SUPPORTING CLASSES
 ' ============================================
 
-Public Class PlayerInput
+Class PlayerInput
     Public Property MoveUp As Boolean
     Public Property MoveDown As Boolean
     Public Property MoveLeft As Boolean
@@ -1651,7 +1651,7 @@ Public Enum KillMethod
     TimeLoop
 End Enum
 
-Public Class LoopEvent
+Class LoopEvent
     Public Property Name As String
     Public Property TriggerTime As Double
     Public Property Action As Action
@@ -1669,7 +1669,7 @@ Public Class LoopEvent
     End Sub
 End Class
 
-Public Class LocationMemory
+Class LocationMemory
     Public Property DiscoveredItems As New List(Of String)()
     Public Property KnownPaths As New List(Of Vector2)()
     Public Property HiddenAreas As New List(Of String)()
@@ -1683,7 +1683,7 @@ Public Class LocationMemory
     End Sub
 End Class
 
-Public Class LoopRecord
+Class LoopRecord
     Public Property LoopNumber As Integer
     Public Property Kills As Integer
     Public Property Deaths As Integer
@@ -1700,7 +1700,7 @@ Public Class LoopRecord
     End Sub
 End Class
 
-Public Class PlayerFrame
+Class PlayerFrame
     Public Property Position As Vector2
     Public Property Velocity As Vector2
     Public Property Rotation As Single
